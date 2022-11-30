@@ -141,3 +141,28 @@ const goldRush = (gold) => {
 goldRush(200);
 console.log(party);
 
+// Sarah is tired of her jellyfish she wants a bear change it
+changeType("Sarah", "bear");
+
+// subtract some gold from her purse
+party[2].gold -= 40;
+
+
+// Timothy's sword has gotten old. Change it to "rusty sword"
+party[1].belongings[0] = "rusty sword"
+console.log(party);
+
+// Write a function called seLeader that takes a name parameter
+// memeber with that name should have a new property leader: true
+// while the others have leader: false
+const setLeader = (leader) => {
+    party.forEach((member) => {
+        if(member.name == leader){
+            member.leader = true;
+        }else{
+            member.leader = false;
+        }
+    })
+}
+setLeader("Fran")
+console.log(party)
