@@ -42,7 +42,7 @@ console.log(party);
 const takeDamage = (name, hp) => {
     party.forEach((member) => {
         if(member.name == name){
-            member.hitpoints = member.hitpoints - hp;
+            member.hitpoints -= hp;
         }
     })
 }
@@ -61,3 +61,83 @@ const changeType = (name, type) => {
 }
 changeType("Sarah", "jellyfish");
 console.log(party);
+
+// Timothy drank a potion. Raise his hp by 20
+// and remove potion from his belongings
+// loop Timothy and increase hp by 20
+// remove potion
+const gainHealth = (name, hp, item) => {
+    party.forEach((member) => {
+        if (member.name == name) {
+            member.hitpoints += hp;
+            member.belongings.forEach((belonging, idx) => {
+                if(belonging == item) {
+                    member.belongings.splice(idx, 1);
+                }
+            })
+        }
+    })
+}
+gainHealth("Timothy", 20, "potion");
+console.log(party);
+
+// take Joline's bread
+// put it in Timothy's belongings
+const itemSwap = (swapFrom, item, swapTo) => {
+    party.forEach((member) => {
+        if(member.name == swapFrom){
+            member.belongings.forEach((belonging, idx) => {
+                if(belonging == item){
+                    member.belongings.splice(idx, 1);
+                }
+            })
+        }
+        if(member.name == swapTo){
+            member.belongings.push(item);
+        }
+    })
+}
+itemSwap("Joline", "bread", "Timothy");
+console.log(party);
+
+// Joline got upset and left the party
+// use name of leaving member as a parameter
+const removeMember = (memberName) => {
+    party.forEach((member) => {
+        if(member.name == memberName){
+            delete member.name;
+            delete member.hitpoints;
+            delete member.belongings;
+            delete member.companion;
+        }
+    })
+}
+removeMember("Joline");
+console.log(party);
+
+// add a new adventurer to the party (new adventurer is parameter)
+const addNewMember = (name, hp, gear, companion) => {
+    party.forEach((member) => {
+        if(member.name == undefined){
+            member.name = name;
+            member.hitpoints = hp;
+            member.belongings = gear;
+            member.companion = companion;
+        }
+    })
+}
+addNewMember("Fran", 45, ["sword", "curry", "crystals"], { name: "Master", type: "spirit"});
+console.log(party);
+
+// party found 200 gold. create a new property gold 
+// split godl evenly between everyone
+// gold is the parameter
+const goldRush = (gold) => {
+    share = Number((gold/3).toFixed(2));
+    party.forEach((member) => {
+        member.gold = share;
+    })
+}
+goldRush(200);
+console.log(party);
+
